@@ -1,0 +1,65 @@
+backend:
+  name: turbo-github
+  turbo_site_id: REPLACE_WITH_DECAP_TURBO_SITE_ID
+  branch: main
+
+publish_mode: editorial_workflow
+locale: id
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+show_preview_links: true
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: "karya"
+    label: "Karya Tulis"
+    label_singular: "Karya Tulis"
+    folder: "src/karya"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    preview_path: "karya/{{slug}}/"
+    summary: "{{title}} · {{category}} · {{date}}"
+    sortable_fields: ["date", "title", "category"]
+    fields:
+      - { label: "Judul", name: "title", widget: "string", required: true }
+      - { label: "Deskripsi SEO", name: "description", widget: "text", required: true, hint: "Ringkasan singkat untuk hasil pencarian dan kartu artikel." }
+      - { label: "Abstrak", name: "abstract", widget: "text", required: false }
+      - { label: "Penulis", name: "author", widget: "hidden", default: "Ananda Fahreza Najeri" }
+      - { label: "Tanggal publikasi", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, default: "{{now}}" }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options: ["Esai", "Jurnalistik", "Akademik", "Opini", "Literasi Digital", "Lainnya"]
+        default: "Esai"
+      - { label: "Tag", name: "tags", widget: "list", required: false, default: [] }
+      - { label: "Kata kunci", name: "keywords", widget: "list", required: false, default: [] }
+      - { label: "Gambar utama", name: "featuredImage", widget: "image", required: false, choose_url: false }
+      - { label: "Teks alternatif gambar", name: "featuredImageAlt", widget: "string", required: false, hint: "Jelaskan informasi visual gambar secara singkat." }
+      - { label: "Keterangan gambar", name: "featuredImageCaption", widget: "string", required: false }
+      - { label: "Tampilkan di arsip publik", name: "published", widget: "boolean", default: true, hint: "Jika dimatikan, halaman tetap dihasilkan tetapi tidak masuk arsip atau sitemap dan diberi noindex. Ini bukan perlindungan untuk naskah rahasia." }
+      - { label: "Daftar pustaka dan sumber", name: "references", widget: "list", required: false, field: { label: "Sumber", name: "reference", widget: "string" } }
+      - { label: "Isi artikel", name: "body", widget: "richtext", required: true, hint: "Gunakan heading, kutipan, daftar, tautan, dan gambar seperlunya." }
+
+  - name: "halaman"
+    label: "Halaman Website"
+    files:
+      - name: "profil"
+        label: "Profil Penulis"
+        file: "src/profil.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/profile.njk" }
+          - { label: "URL halaman", name: "permalink", widget: "hidden", default: "/profil/index.html" }
+          - { label: "Judul halaman", name: "title", widget: "string", required: true }
+          - { label: "Deskripsi SEO", name: "description", widget: "text", required: true }
+          - { label: "Biografi", name: "bio", widget: "text", required: true, hint: "Isi hanya informasi yang akurat dan telah dikonfirmasi." }
+          - { label: "Bidang minat", name: "interests", widget: "list", required: false, field: { label: "Bidang", name: "interest", widget: "string" } }
+          - { label: "Pendidikan", name: "education", widget: "string", required: false }
+          - { label: "Pengalaman", name: "experience", widget: "text", required: false }
+          - { label: "Tautan profil profesional", name: "professional_url", widget: "string", required: false, hint: "Gunakan URL penuh, misalnya https://..." }
+          - { label: "Informasi tambahan", name: "body", widget: "richtext", required: false }

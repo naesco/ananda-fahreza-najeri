@@ -1,0 +1,81 @@
+---
+layout: layouts/base.njk
+title: "Ananda Fahreza Najeri | Portofolio Karya Tulis"
+description: "Portofolio akademik dan personal Ananda Fahreza Najeri. Temukan artikel, esai, opini, dan karya tulis yang diterbitkan di sini."
+permalink: /
+bodyClass: home-page
+---
+<main id="konten-utama">
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span> Portofolio akademik dan publikasi</p>
+        <h1>Karya tulis dan pemikiran <span>Ananda Fahreza Najeri.</span></h1>
+        <p class="hero-intro">Ruang untuk menghimpun artikel, esai, opini, dan karya akademik dalam satu arsip yang tertata dan mudah diakses.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="/karya/">Jelajahi karya</a>
+          <a class="button button-secondary" href="/profil/">Kenali penulis</a>
+        </div>
+        <p class="hero-caption">Tulisan yang terbit, tersimpan, dan dapat ditelusuri kembali.</p>
+      </div>
+      <div class="hero-art-wrap" aria-label="Ilustrasi editorial tentang membaca dan menulis" role="img">
+        <div class="art-note art-note-top"><span class="art-note-line"></span><span>Gagasan</span></div>
+        <img class="hero-art" src="/assets/images/editorial-study.svg" alt="" width="620" height="540" fetchpriority="high">
+        <div class="art-note art-note-bottom"><span>Catatan dan publikasi</span><span class="art-note-line"></span></div>
+      </div>
+    </div>
+    <div class="hero-bottom-rule" aria-hidden="true"></div>
+  </section>
+
+  <section class="section latest-section" aria-labelledby="latest-heading">
+    <div class="container">
+      <div class="section-heading">
+        <div><p class="eyebrow">Dari meja penulis</p><h2 id="latest-heading">Karya terbaru</h2><p class="section-intro">Artikel dan tulisan yang telah dipublikasikan.</p></div>
+        <a class="text-link section-heading-link" href="/karya/">Lihat seluruh arsip</a>
+      </div>
+      {% if (collections.publishedArticles | length) %}
+        <div class="article-grid">
+          {% for article in collections.publishedArticles | limit(3) %}
+            {% include "partials/article-card.njk" %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-state home-empty-state">
+          <p class="eyebrow">Arsip sedang disiapkan</p>
+          <h3>Karya pertama akan tampil di sini.</h3>
+          <p>Gunakan dashboard admin untuk menulis dan menerbitkan artikel. Setelah diterbitkan, karya akan otomatis muncul di halaman ini dan arsip karya tulis.</p>
+          <a class="text-link" href="/admin/">Buka dashboard admin</a>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="section categories-section" aria-labelledby="categories-heading">
+    <div class="container">
+      <div class="section-heading categories-intro">
+        <div><p class="eyebrow">Ruang topik</p><h2 id="categories-heading">Bidang tulisan</h2></div>
+        <p class="section-intro">Arsip dapat berkembang mengikuti topik dan jenis karya yang diterbitkan.</p>
+      </div>
+      <div class="category-grid">
+        {% for category in site.categories %}
+          <a class="category-card" href="/karya/">
+            <span class="category-index">0{{ loop.index }}</span>
+            <h3>{{ category.name }}</h3>
+            <p>{{ category.description }}</p>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="profile-teaser-section">
+    <div class="container profile-teaser">
+      <div class="profile-teaser-label"><span class="eyebrow">Tentang penulis</span><span class="teaser-monogram" aria-hidden="true">AFN</span></div>
+      <div class="profile-teaser-copy">
+        <h2>Ruang publikasi yang dibangun dari karya.</h2>
+        <p>Website ini menjadi titik temu antara profil penulis, arsip tulisan, dan informasi publikasi. Informasi biografi serta pengalaman profesional akan dilengkapi berdasarkan data yang diberikan pemilik.</p>
+        <a class="text-link" href="/profil/">Baca profil penulis</a>
+      </div>
+    </div>
+  </section>
+</main>

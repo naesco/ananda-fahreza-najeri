@@ -1,0 +1,57 @@
+---
+layout: layouts/base.njk
+title: "Arsip Karya Tulis | Ananda Fahreza Najeri"
+description: "Jelajahi arsip artikel, esai, opini, dan karya tulis Ananda Fahreza Najeri berdasarkan judul, topik, kategori, atau tag."
+permalink: /karya/index.html
+bodyClass: archive-page
+---
+<main id="konten-utama">
+  <section class="page-hero archive-hero">
+    <div class="container page-hero-inner">
+      <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span> Perpustakaan digital</p>
+      <h1>Arsip karya tulis</h1>
+      <p class="page-hero-intro">Kumpulan artikel, esai, opini, dan tulisan akademik. Gunakan pencarian atau filter untuk menemukan karya berdasarkan topik.</p>
+      <div class="archive-count"><span class="archive-count-number">{{ (collections.publishedArticles | length) }}</span><span>karya terbit</span></div>
+    </div>
+  </section>
+
+  <section class="section archive-section" id="daftar-karya" aria-labelledby="archive-heading">
+    <div class="container">
+      <div class="section-heading archive-list-heading">
+        <div><p class="eyebrow">Indeks publikasi</p><h2 id="archive-heading">Semua karya</h2></div>
+        {% if (collections.publishedArticles | length) %}<a class="text-link" href="/admin/">Kelola karya</a>{% endif %}
+      </div>
+
+      {% if (collections.publishedArticles | length) %}
+        <div class="archive-tools" data-archive-tools>
+          <div class="search-field">
+            <label for="article-search">Cari karya</label>
+            <input id="article-search" type="search" placeholder="Judul, topik, atau kata kunci" autocomplete="off" data-article-search>
+          </div>
+          <div class="filter-field">
+            <label for="category-filter">Kategori</label>
+            <select id="category-filter" data-category-filter>
+              <option value="">Semua kategori</option>
+            </select>
+          </div>
+          <button class="filter-reset" type="button" data-filter-reset>Atur ulang</button>
+        </div>
+        <p class="results-status" aria-live="polite" data-results-status>Menampilkan {{ (collections.publishedArticles | length) }} karya.</p>
+        <div class="article-grid archive-grid" data-article-grid>
+          {% for article in collections.publishedArticles %}
+            {% include "partials/article-card.njk" %}
+          {% endfor %}
+        </div>
+        <p class="no-results" data-no-results hidden>Tidak ada karya yang cocok. Coba kata kunci atau kategori lain.</p>
+        <noscript><p class="noscript-note">Semua karya tetap dapat dibaca. Aktifkan JavaScript untuk menggunakan pencarian dan filter kategori.</p></noscript>
+      {% else %}
+        <div class="empty-state archive-empty-state">
+          <p class="eyebrow">Belum ada publikasi</p>
+          <h3>Arsip akan terisi setelah karya pertama diterbitkan.</h3>
+          <p>Artikel yang disimpan melalui dashboard admin akan masuk ke halaman ini secara otomatis setelah dipublikasikan.</p>
+          <a class="button button-primary" href="/admin/">Buka dashboard admin</a>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+</main>

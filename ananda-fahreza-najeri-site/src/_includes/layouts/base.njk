@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="color-scheme" content="light">
+  <title>{{ title or site.name }}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="robots" content="{{ robots or 'index, follow' }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/monogram.svg">
+  <link rel="stylesheet" href="/css/site.css">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ title or site.name }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}{{ featuredImage or image or site.socialImage }}">
+  <meta property="og:image:alt" content="Identitas visual portofolio Ananda Fahreza Najeri">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  {% if ogType == 'article' %}<meta property="article:published_time" content="{{ date | dateISO }}"><meta property="article:author" content="{{ author or site.author.name }}">{% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title or site.name }}">
+  <meta name="twitter:description" content="{{ description or site.description }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ featuredImage or image or site.socialImage }}">
+  <script type="application/ld+json">{{ {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    'name': site.name,
+    'url': site.url,
+    'description': site.description,
+    'inLanguage': 'id-ID',
+    'author': {
+      '@type': 'Person',
+      'name': site.author.name,
+      'url': site.url ~ '/profil/'
+    }
+  } | json | safe }}</script>
+  <script type="application/ld+json">{{ {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    'name': site.author.name,
+    'url': site.url ~ '/profil/'
+  } | json | safe }}</script>
+</head>
+<body class="{{ bodyClass or '' }}">
+  <a class="skip-link" href="#konten-utama">Lewati ke konten utama</a>
+  {% include "partials/header.njk" %}
+  {{ content | safe }}
+  {% include "partials/footer.njk" %}
+  <script src="/js/site.js" defer></script>
+</body>
+</html>

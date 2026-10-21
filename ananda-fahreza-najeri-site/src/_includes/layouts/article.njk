@@ -1,0 +1,95 @@
+<main id="konten-utama" class="article-page">
+  <div class="container article-container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Beranda</a><span aria-hidden="true">/</span><a href="/karya/">Karya tulis</a><span aria-hidden="true">/</span><span aria-current="page">{{ title }}</span>
+    </nav>
+
+    {% if not published %}
+      <div class="draft-notice" role="note">
+        <strong>Pratinjau naskah.</strong> Naskah ini belum ditandai untuk tampil di arsip publik. Ganti atau hapus contoh ini sebelum menerbitkan website.
+      </div>
+    {% endif %}
+
+    <article class="article-content">
+      <header class="article-header">
+        <p class="eyebrow">{{ category or 'Karya tulis' }}</p>
+        <h1>{{ title }}</h1>
+        {% if abstract %}<p class="article-abstract">{{ abstract }}</p>{% elif description %}<p class="article-abstract">{{ description }}</p>{% endif %}
+        <div class="article-byline">
+          <span>{{ author or site.author.name }}</span>
+          <span class="meta-separator" aria-hidden="true"></span>
+          <time datetime="{{ date | dateISO }}">{{ date | formatDate }}</time>
+          {% if tags and (tags | length) %}<span class="meta-separator" aria-hidden="true"></span><span>{{ tags | join(', ') }}</span>{% endif %}
+        </div>
+      </header>
+
+      {% if featuredImage %}
+        <figure class="article-featured-image">
+          <img src="{{ featuredImage }}" alt="{{ featuredImageAlt or title }}" width="1200" height="675" fetchpriority="high">
+          {% if featuredImageCaption %}<figcaption>{{ featuredImageCaption }}</figcaption>{% endif %}
+        </figure>
+      {% endif %}
+
+      <div class="prose">
+        {{ content | safe }}
+      </div>
+
+      {% if keywords and (keywords | length) %}
+        <div class="article-keywords" aria-label="Kata kunci">
+          <span>Kata kunci:</span>
+          {% for keyword in keywords %}<span class="keyword-chip">{{ keyword }}</span>{% endfor %}
+        </div>
+      {% endif %}
+
+      {% if references and (references | length) %}
+        <section class="references" aria-labelledby="references-heading">
+          <h2 id="references-heading">Daftar pustaka dan sumber</h2>
+          <ol>
+            {% for reference in references %}<li>{{ reference }}</li>{% endfor %}
+          </ol>
+        </section>
+      {% endif %}
+
+      <footer class="article-endmatter">
+        <p>Ditulis oleh <strong>{{ author or site.author.name }}</strong></p>
+        <a class="text-link" href="/karya/">Kembali ke arsip karya</a>
+      </footer>
+    </article>
+
+    {% if (collections.publishedArticles | length) > 1 %}
+      <section class="related-section" aria-labelledby="related-heading">
+        <div class="section-heading compact-heading">
+          <div><p class="eyebrow">Lanjut membaca</p><h2 id="related-heading">Karya lainnya</h2></div>
+          <a class="text-link" href="/karya/">Lihat semua</a>
+        </div>
+        <div class="article-grid">
+          {% for related in collections.publishedArticles | limit(3) %}
+            {% if related.url != page.url %}{% set article = related %}{% include "partials/article-card.njk" %}{% endif %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  </div>
+</main>
+<script type="application/ld+json">{{ {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  'headline': title,
+  'description': description or abstract,
+  'author': {'@type': 'Person', 'name': author or site.author.name, 'url': site.url ~ '/profil/'},
+  'datePublished': date | dateISO,
+  'image': site.url ~ (featuredImage or site.socialImage),
+  'inLanguage': 'id-ID',
+  'mainEntityOfPage': {'@type': 'WebPage', '@id': site.url ~ page.url},
+  'articleSection': category,
+  'keywords': (keywords or tags or []) | join(', ')
+} | json | safe }}</script>
+<script type="application/ld+json">{{ {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': 'Beranda', 'item': site.url ~ '/'},
+    {'@type': 'ListItem', 'position': 2, 'name': 'Karya tulis', 'item': site.url ~ '/karya/'},
+    {'@type': 'ListItem', 'position': 3, 'name': title, 'item': site.url ~ page.url}
+  ]
+} | json | safe }}</script>
