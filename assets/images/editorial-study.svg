@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 540" role="img" aria-labelledby="title desc">
+  <title id="title">Meja kerja editorial</title>
+  <desc id="desc">Ilustrasi buku terbuka, lembar catatan, dan susunan bidang geometris dengan warna hijau gelap, terakota, dan putih gading.</desc>
+  <rect width="620" height="540" fill="#f1eee5"/>
+  <circle cx="438" cy="132" r="105" fill="#d9dfd3"/>
+  <circle cx="438" cy="132" r="75" fill="none" stroke="#8a9a89" stroke-width="1.4"/>
+  <path d="M0 415 620 342V540H0Z" fill="#e5e0d4"/>
+  <path d="M84 102h168v242H84z" fill="#fffdf7" stroke="#d5d1c7" stroke-width="1.5"/>
+  <path d="M105 130h117M105 145h95M105 160h105" stroke="#b9c0b5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M105 192h117M105 207h117M105 222h83M105 255h117M105 270h99M105 285h117" stroke="#d3d6ce" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M105 314h117" stroke="#bd6b4f" stroke-width="3" stroke-linecap="round"/>
+  <g transform="rotate(-8 371 301)">
+    <rect x="248" y="168" width="246" height="280" rx="3" fill="#173a35"/>
+    <rect x="261" y="181" width="220" height="254" fill="#fffdf7"/>
+    <path d="M371 181v254" stroke="#d8d8cc" stroke-width="1.5"/>
+    <path d="M280 210h68M280 223h58M280 236h69M280 249h50M280 278h67M280 291h58M280 304h69M280 317h42" stroke="#a8b4a8" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M393 210h66M393 223h69M393 236h57M393 249h66M393 278h66M393 291h52M393 304h69M393 317h57M393 330h66" stroke="#a8b4a8" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M280 354h69M280 367h55M393 354h66M393 367h46" stroke="#bd6b4f" stroke-width="3" stroke-linecap="round"/>
+    <path d="M280 391h67M393 391h66" stroke="#d3d6ce" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <g transform="rotate(9 500 355)">
+    <rect x="454" y="278" width="91" height="142" fill="#bd6b4f"/>
+    <rect x="463" y="288" width="73" height="122" fill="#d9a28d"/>
+    <path d="M475 308h48M475 320h42M475 332h48M475 344h32M475 369h48M475 381h42" stroke="#fff4e8" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+  <path d="M65 443h490" stroke="#b7b6a9" stroke-width="1.4"/>
+  <path d="M113 466h148" stroke="#bd6b4f" stroke-width="2" stroke-linecap="round"/>
+  <path d="M113 479h95" stroke="#a6afa3" stroke-width="2" stroke-linecap="round"/>
+  <path d="M113 492h125" stroke="#a6afa3" stroke-width="2" stroke-linecap="round"/>
+  <path d="M463 83h52M489 57v52" stroke="#bd6b4f" stroke-width="1.4"/>
+  <rect x="475" y="69" width="27" height="27" fill="none" stroke="#173a35" stroke-width="1.4" transform="rotate(45 488.5 82.5)"/>
+</svg>
